@@ -3,7 +3,7 @@ public class PokerV1 {
     public static void main(String[] args){
         // 洗牌
         long start = System.currentTimeMillis();
-        int[] poker = new int[6]; // poker[0] = 0, ....
+        int[] poker = new int[52]; // poker[0] = 0, ....
         for (int i=0; i<poker.length; i++){
             int temp = (int)(Math.random()*poker.length);
             // 檢查機制
