@@ -2,9 +2,7 @@ package tw.org.iii.javatest;
 public class PokerV2 {
     public static void main(String[] args){
         // 洗牌
-        long start = System.currentTimeMillis();
         int[] poker = new int[52]; // poker[0] = 0, ....
-
         int temp; boolean isRepeat;
         for (int i=0; i<poker.length; i++){
             do{
@@ -23,8 +21,18 @@ public class PokerV2 {
             System.out.println(poker[i]);
         }
         System.out.println("----");
-        System.out.println(System.currentTimeMillis() - start);
         // 發牌
+        int[][] players = new int[4][13];
+        for (int i=0; i<poker.length; i++){
+            players[i%4][i/4] = poker[i];
+        }
+
+        for (int v:players[1]){
+            System.out.println(v);
+        }
+
+
+
         // 攤牌 (理牌)
     }
 }
