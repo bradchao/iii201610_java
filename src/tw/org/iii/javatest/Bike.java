@@ -1,5 +1,5 @@
 package tw.org.iii.javatest;
-public class Bike {
+public class Bike extends Object{
     // Member: 成員 > 屬性 / 方法
     // public > protected > <沒有> > private
     private double speed;
