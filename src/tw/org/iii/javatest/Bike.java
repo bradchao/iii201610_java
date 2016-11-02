@@ -5,9 +5,11 @@ public class Bike extends Object{
     private double speed;
 
     Bike(){
-        System.out.println("Bike()");
+        // super();
+
     }
     Bike(int gear){
+        // super();
         System.out.println("Bike(int)");
     }
 
