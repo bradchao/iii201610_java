@@ -5,6 +5,9 @@ public class TWId {
     private static final String  letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
 
     public TWId(){
+//        char c = letters.charAt((int)(Math.random()*26));
+//        boolean b = ((int)(Math.random()*2)==0?true:false);
+//        this(c,b);
         this(letters.charAt((int)(Math.random()*26)),
                 ((int)(Math.random()*2)==0?true:false));
     }
