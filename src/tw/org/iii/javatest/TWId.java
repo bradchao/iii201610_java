@@ -21,16 +21,13 @@ public class TWId {
 
     public boolean isCheckOK(){
         boolean ret = false;
-        if (ret = preCheck()){
+        if (ret = id.matches("^[A-Z][12][0-9]{3}$")){
             // 編碼規則
+            
         }
         return ret;
     }
 
-    private boolean preCheck(){
-        // 4
-        return false;
-    }
 
     public String getArea(){
         // TODO --- getArea()
