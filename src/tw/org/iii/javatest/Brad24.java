@@ -5,12 +5,25 @@ package tw.org.iii.javatest;
  */
 public class Brad24 {
     public static void main(String[] args){
-        String id = "B120863158";
-        if (id.matches("^[A-Z][12][0-9]{8}$")){
-            System.out.println("OK");
-        }else{
-            System.out.println("XX");
-        }
-
+        System.out.println(Person.getCounter());
+        Person p1 = new Person("Brad");
+        Person p2 = new Person("Brad");
+        Person p3 = new Person("Brad");
+        System.out.println(Person.getCounter());
+        //p1.sayYa();
+    }
+}
+class Person{
+    String name;
+    static private int counter;
+    Person(String name){
+        this.name = name;
+        counter++;
+    }
+    void sayYa(){
+        System.out.println(name + ":Ya");
+    }
+    static int getCounter(){
+        return counter;
     }
 }
