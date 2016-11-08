@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 
 public class Brad27 extends JFrame implements ActionListener{
     private JButton newFile, openFile, saveFile, saveAsFile, exit;
@@ -42,12 +39,20 @@ public class Brad27 extends JFrame implements ActionListener{
             }
         });
 
+        saveFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveFile();
+            }
+        });
+
         JPanel top = new JPanel(new FlowLayout());
         top.add(newFile);top.add(openFile);top.add(saveFile);
         top.add(saveAsFile); top.add(exit);
 
         add(top,BorderLayout.NORTH);
-        add(editor, BorderLayout.CENTER);
+        JScrollPane jsp = new JScrollPane(editor);
+        add(jsp, BorderLayout.CENTER);
 
         setSize(640,480);
         setVisible(true);
@@ -83,6 +88,33 @@ public class Brad27 extends JFrame implements ActionListener{
             editor.setText(sb.toString());
         } catch (Exception e) {
 
+        }
+    }
+
+    private void saveFile(){
+        if (editFile == null){
+            saveAsFile();
+        }else{
+            save2RealFile();
+        }
+    }
+
+    private void saveAsFile(){
+        JFileChooser jfc = new JFileChooser();
+        if (jfc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION){
+            editFile = jfc.getSelectedFile();
+            save2RealFile();
+        }
+    }
+
+    private void save2RealFile(){
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(editFile));
+            bw.write(editor.getText());
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
