@@ -34,10 +34,6 @@ public class MyPanel extends JPanel {
                         p1.get("x"), p1.get("y"));
             }
         }
-
-
-
-
     }
 
     private class MyMouseListener extends MouseAdapter {
@@ -59,7 +55,12 @@ public class MyPanel extends JPanel {
             lines.getLast().add(point);
             repaint();
         }
-
-
     }
+
+    void clear(){
+        lines.clear();
+        repaint();
+    }
+
+
 }
