@@ -9,13 +9,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MyPanel extends JPanel {
-    private LinkedList<LinkedList<HashMap<String,Integer>>> lines = null;
+    private LinkedList<LinkedList<HashMap<String,Integer>>> lines, recycle;
 
     public MyPanel(){
         MyMouseListener myMouseListener = new MyMouseListener();
         addMouseMotionListener(myMouseListener);
         addMouseListener(myMouseListener);
         lines = new LinkedList<>();
+        recycle = new LinkedList<>();
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -62,5 +63,17 @@ public class MyPanel extends JPanel {
         repaint();
     }
 
+    void undo(){
+        if (lines.size()>0) {
+            recycle.add(lines.removeLast());
+            repaint();
+        }
+    }
+    void redo(){
+        if (recycle.size()>0) {
+            lines.add(recycle.removeLast());
+            repaint();
+        }
+    }
 
 }
