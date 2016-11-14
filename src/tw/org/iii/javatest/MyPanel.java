@@ -2,16 +2,20 @@ package tw.org.iii.javatest;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class MyPanel extends JPanel implements MouseMotionListener {
+public class MyPanel extends JPanel {
     private LinkedList<HashMap<String,Integer>> line;
+    private MyMouseListener myMouseListener;
 
     public MyPanel(){
-        addMouseMotionListener(this);
+        myMouseListener = new MyMouseListener();
+        addMouseMotionListener(myMouseListener);
+        addMouseListener(myMouseListener);
         line = new LinkedList<>();
     }
     @Override
@@ -33,16 +37,16 @@ public class MyPanel extends JPanel implements MouseMotionListener {
 
     }
 
+    private class MyMouseListener extends MouseAdapter {
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            int x = e.getX(); int y = e.getY();
+            HashMap<String,Integer> point = new HashMap<>();
+            point.put("x", x); point.put("y", y);
+            line.add(point);
+            repaint();
+        }
+        
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        int x = e.getX(); int y = e.getY();
-        HashMap<String,Integer> point = new HashMap<>();
-        point.put("x", x); point.put("y", y);
-        line.add(point);
-        repaint();
     }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {}
 }
